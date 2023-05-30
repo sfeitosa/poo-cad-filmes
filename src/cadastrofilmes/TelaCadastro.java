@@ -4,6 +4,8 @@
  */
 package cadastrofilmes;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -13,11 +15,15 @@ import javax.swing.UIManager;
  */
 public class TelaCadastro extends javax.swing.JFrame {
 
+    private List<Filme> filmes;
+    
     /**
      * Creates new form TelaCadastro
      */
     public TelaCadastro() {
         initComponents();
+        
+        filmes = new ArrayList<>();
     }
 
     /**
@@ -38,7 +44,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         edtTituloOriginal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        edtSinopse = new javax.swing.JTextArea();
+        taSinopse = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         edtDuracao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -48,6 +54,17 @@ public class TelaCadastro extends javax.swing.JFrame {
         rb16 = new javax.swing.JRadioButton();
         rb18 = new javax.swing.JRadioButton();
         btnCadastrar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        cbAcao = new javax.swing.JCheckBox();
+        cbAventura = new javax.swing.JCheckBox();
+        cbComedia = new javax.swing.JCheckBox();
+        cbDrama = new javax.swing.JCheckBox();
+        cbSuspense = new javax.swing.JCheckBox();
+        cbTerror = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        ccPais = new javax.swing.JComboBox<>();
+        btnMostrarFilmes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Filmes");
@@ -60,9 +77,9 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jLabel3.setText("Sinopse");
 
-        edtSinopse.setColumns(20);
-        edtSinopse.setRows(5);
-        jScrollPane1.setViewportView(edtSinopse);
+        taSinopse.setColumns(20);
+        taSinopse.setRows(5);
+        jScrollPane1.setViewportView(taSinopse);
 
         jLabel4.setText("Duração");
 
@@ -71,6 +88,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel6.setText("Classificação");
 
         buttonGroup1.add(rbLivre);
+        rbLivre.setSelected(true);
         rbLivre.setText("Livre");
 
         buttonGroup1.add(rb14);
@@ -159,23 +177,101 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Outras Informações"));
+
+        jLabel7.setText("Gênero");
+
+        cbAcao.setText("Ação");
+
+        cbAventura.setText("Aventura");
+
+        cbComedia.setText("Comédia");
+
+        cbDrama.setText("Drama");
+
+        cbSuspense.setText("Suspense");
+
+        cbTerror.setText("Terror");
+
+        jLabel8.setText("País de Origem");
+
+        ccPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Brasil", "Estados Unidos", "Argentina" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbAcao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbAventura)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbComedia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbDrama)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbSuspense)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTerror))
+                    .addComponent(jLabel8)
+                    .addComponent(ccPais, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAcao)
+                    .addComponent(cbAventura)
+                    .addComponent(cbComedia)
+                    .addComponent(cbDrama)
+                    .addComponent(cbSuspense)
+                    .addComponent(cbTerror))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ccPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        btnMostrarFilmes.setText("Mostrar Filmes");
+        btnMostrarFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarFilmesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnMostrarFilmes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCadastrar)
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastrar)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnMostrarFilmes))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,16 +279,92 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
-        String titulo = edtTitulo.getText();
-        String tituloOriginal = edtTituloOriginal.getText();
-        String sinopse = edtSinopse.getText();
-        
-        String msg = titulo + " | " + tituloOriginal + " | " + sinopse;
-        
-        JOptionPane.showMessageDialog(null, msg);
-        
+
+        try {
+
+            String titulo = edtTitulo.getText();
+            String tituloOriginal = edtTituloOriginal.getText();
+            String sinopse = taSinopse.getText();
+            int duracao = Integer.parseInt(edtDuracao.getText());
+
+            int classificacao;
+
+            if (rbLivre.isSelected()) {
+                classificacao = 0;
+            } else if (rb14.isSelected()) {
+                classificacao = 1;
+            } else if (rb16.isSelected()) {
+                classificacao = 2;
+            } else {
+                classificacao = 3;
+            }
+
+            String generos = "";
+
+            if (cbAcao.isSelected()) {
+                generos += "Ação ";
+            }
+            if (cbAventura.isSelected()) {
+                generos += "Aventura ";
+            }
+            if (cbComedia.isSelected()) {
+                generos += "Comédia ";
+            }
+            if (cbDrama.isSelected()) {
+                generos += "Drama ";
+            }
+            if (cbSuspense.isSelected()) {
+                generos += "Suspense ";
+            }
+            if (cbTerror.isSelected()) {
+                generos += "Terror ";
+            }
+
+            int pais = ccPais.getSelectedIndex();
+
+            String paisDeOrigem = (String) ccPais.getSelectedItem();
+
+//            String msg = "Título: " + titulo + "\n";
+//
+//            msg += "Titulo Original: " + tituloOriginal + "\n";
+//            msg += "Sinopse: " + sinopse + "\n";
+//            msg += "Duração: " + duracao + "\n";
+//            msg += "Classificação: " + classificacao + "\n";
+//            msg += "Gêneros: " + generos + "\n";
+//            msg += "País de Origem: " + paisDeOrigem + "\n";
+//
+//            JOptionPane.showMessageDialog(null, msg);
+
+
+            Filme f = new Filme(titulo, tituloOriginal, sinopse);
+            
+            filmes.add(f);
+            
+            JOptionPane.showMessageDialog(null, "Filme cadastrado com sucesso!");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Erro na conversão da duração!");
+        }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnMostrarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarFilmesActionPerformed
+        
+        String msg = "";
+        int cont = 0;
+        
+        for (Filme f : filmes) {
+            msg += "Filme " + cont + "\n";
+            msg += "Titulo: " + f.getTitulo() + "\n";
+            msg += "Titulo Original: " + f.getTituloOriginal() + "\n";
+            msg += "Sinopse: " + f.getSinopse() + "\n";
+            msg += "----------------------------------\n";
+            
+            cont++;
+        }
+        
+        JOptionPane.showMessageDialog(null, msg);        
+    }//GEN-LAST:event_btnMostrarFilmesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,9 +398,16 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnMostrarFilmes;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox cbAcao;
+    private javax.swing.JCheckBox cbAventura;
+    private javax.swing.JCheckBox cbComedia;
+    private javax.swing.JCheckBox cbDrama;
+    private javax.swing.JCheckBox cbSuspense;
+    private javax.swing.JCheckBox cbTerror;
+    private javax.swing.JComboBox<String> ccPais;
     private javax.swing.JTextField edtDuracao;
-    private javax.swing.JTextArea edtSinopse;
     private javax.swing.JTextField edtTitulo;
     private javax.swing.JTextField edtTituloOriginal;
     private javax.swing.JLabel jLabel1;
@@ -237,12 +416,16 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rb14;
     private javax.swing.JRadioButton rb16;
     private javax.swing.JRadioButton rb18;
     private javax.swing.JRadioButton rbLivre;
+    private javax.swing.JTextArea taSinopse;
     // End of variables declaration//GEN-END:variables
 }
